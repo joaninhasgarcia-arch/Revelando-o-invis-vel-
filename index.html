@@ -1,14 +1,16 @@
 <!doctype html>
 <html lang="pt-BR" class="h-full">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Vendo o Invisível</title>
 
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -17,9 +19,8 @@
           colors: {
             dark: '#0a0a0c',
             darkSurface: '#12121a',
-            coldBlue: '#1a2a3a',
-            deepRed: '#4a1a1a',
-            gold: '#c9a84c'
+            gold: '#c9a84c',
+            deepRed: '#4a1a1a'
           }
         }
       }
@@ -27,7 +28,8 @@
   </script>
 
   <style>
-    html, body {
+    html,
+    body {
       height: 100%;
       margin: 0;
     }
@@ -36,6 +38,7 @@
       background: #0a0a0c;
       color: #e8e8e8;
       font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
     }
 
     .font-cinzel {
@@ -47,43 +50,26 @@
     }
 
     @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
 
-    @keyframes glow-pulse {
-      0%,100% { box-shadow: 0 0 20px rgba(201,168,76,0.3); }
-      50% { box-shadow: 0 0 40px rgba(201,168,76,0.6); }
-    }
-
-    @keyframes smoke {
-      0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.8);
+      0%,
+      100% {
+        transform: translateY(0);
       }
+
       50% {
-        opacity: 0.3;
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-100px) scale(1.5);
+        transform: translateY(-12px);
       }
     }
 
-    @keyframes particle-float {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-      }
-      80% {
-        opacity: 1;
-      }
+    @keyframes glow {
+
+      0%,
       100% {
-        transform: translateY(-200px) translateX(30px);
-        opacity: 0;
+        box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 35px rgba(201, 168, 76, 0.45);
       }
     }
 
@@ -92,13 +78,13 @@
     }
 
     .animate-glow {
-      animation: glow-pulse 3s ease-in-out infinite;
+      animation: glow 3s ease-in-out infinite;
     }
 
     .scroll-reveal {
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.16,1,0.3,1);
+      transition: all .8s ease;
     }
 
     .scroll-reveal.visible {
@@ -106,302 +92,445 @@
       transform: translateY(0);
     }
 
-    .blur-reveal {
-      opacity: 0;
-      filter: blur(10px);
-      transition: all 1s ease;
-    }
-
-    .blur-reveal.visible {
-      opacity: 1;
-      filter: blur(0);
-    }
-
-    .smoke-particle {
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,0.08), transparent);
-      animation: smoke 6s ease-in-out infinite;
-    }
-
-    .particle {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: rgba(201,168,76,0.6);
-      animation: particle-float 5s ease-in-out infinite;
-    }
-
-    .book-3d {
-      perspective: 800px;
-    }
-
-    .book-3d-inner {
-      transform: rotateY(-12deg) rotateX(3deg);
-      transition: transform 0.5s ease;
-      box-shadow: -15px 15px 40px rgba(0,0,0,0.7), 0 0 60px rgba(201,168,76,0.1);
-      border-radius: 18px;
-    }
-
-    .book-3d:hover .book-3d-inner {
-      transform: rotateY(-5deg) rotateX(1deg);
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, .3), transparent);
     }
 
     .cta-btn {
       background: linear-gradient(135deg, #c9a84c, #8a6b2a);
-      transition: all 0.3s ease;
+      transition: .3s ease;
     }
 
     .cta-btn:hover {
       transform: scale(1.03);
-      box-shadow: 0 0 30px rgba(201,168,76,0.5);
-    }
-
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      box-shadow: 0 0 30px rgba(201, 168, 76, .4);
     }
 
     .card-premium {
       background: linear-gradient(145deg, #12121a, #1a1a24);
-      border: 1px solid rgba(201,168,76,0.1);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(201, 168, 76, .1);
+      transition: .3s ease;
     }
 
     .card-premium:hover {
-      border-color: rgba(201,168,76,0.3);
+      border-color: rgba(201, 168, 76, .3);
       transform: translateY(-4px);
+    }
+
+    .book-3d {
+      perspective: 900px;
+    }
+
+    .book-3d img {
+      transform: rotateY(-12deg) rotateX(3deg);
+      transition: .5s ease;
+      border-radius: 20px;
+      box-shadow:
+        -15px 15px 40px rgba(0, 0, 0, .7),
+        0 0 60px rgba(201, 168, 76, .08);
+    }
+
+    .book-3d img:hover {
+      transform: rotateY(-5deg) rotateX(1deg);
     }
 
     .image-cinematic {
       position: relative;
       overflow: hidden;
+      border-radius: 22px;
     }
 
     .image-cinematic::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(10,10,12,0.1) 0%, rgba(10,10,12,0.5) 100%);
+      background: linear-gradient(180deg,
+          rgba(10, 10, 12, 0.08) 0%,
+          rgba(10, 10, 12, 0.45) 100%);
+    }
+
+    .bg-light {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.08), transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
     }
   </style>
 </head>
 
-<body class="h-full overflow-auto">
+<body>
 
-  <div class="w-full min-h-full">
+  <div class="bg-light top-0 left-[-200px]"></div>
+  <div class="bg-light bottom-0 right-[-200px]"></div>
 
-    <!-- HERO -->
-    <section class="relative min-h-full flex flex-col items-center justify-center px-4 py-20 overflow-hidden">
+  <!-- HERO -->
+  <section class="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
 
-      <div class="absolute inset-0 bg-gradient-to-b from-dark via-darkSurface to-dark"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(26,42,58,0.3)_0%,transparent_70%)]"></div>
+    <div class="relative z-10 max-w-xl mx-auto text-center">
 
-      <div class="absolute inset-0 pointer-events-none">
-        <div class="smoke-particle" style="top:20%;left:10%;animation-delay:0s"></div>
-        <div class="smoke-particle" style="top:40%;left:70%;animation-delay:2s"></div>
-        <div class="smoke-particle" style="top:60%;left:30%;animation-delay:4s"></div>
+      <div class="book-3d w-72 md:w-96 mx-auto mb-10 animate-float">
+        <img src="images/book.png" alt="Livro Vendo o Invisível" class="w-full object-contain">
       </div>
 
-      <div class="relative z-10 text-center max-w-lg mx-auto">
+      <h1 class="font-cinzel text-4xl md:text-6xl font-black tracking-wider text-white mb-5">
+        VENDO O INVISÍVEL
+      </h1>
 
-        <div class="book-3d mx-auto mb-10 w-72 md:w-96 animate-float">
-          <img
-            src="images/livro.png"
-            alt="Livro Vendo o Invisível"
-            class="book-3d-inner w-full object-contain"
-          >
-        </div>
-
-        <h1 class="font-cinzel text-4xl md:text-6xl font-black tracking-wider text-white mb-4">
-          VENDO O INVISÍVEL
-        </h1>
-
-        <p class="font-cormorant text-lg md:text-xl text-gray-300 italic mb-8 leading-relaxed">
-          O guia espiritual que vai abrir seus olhos para o mundo que a maioria não consegue enxergar.
-        </p>
-
-        <div class="mb-6">
-          <span class="text-gray-500 line-through text-sm">R$50,00</span>
-          <span class="text-gold font-bold text-3xl ml-3">R$19,90</span>
-          <span class="text-xs text-gold/70 block mt-1">HOJE</span>
-        </div>
-
-        <a
-          href="https://pay.cakto.com.br/g278su7_799667"
-          target="_blank"
-          class="cta-btn animate-glow inline-block px-10 py-4 rounded-full text-dark font-bold text-lg tracking-wide"
-        >
-          QUERO ENXERGAR ALÉM
-        </a>
-
-      </div>
-    </section>
-
-    <div class="section-divider mx-8"></div>
-
-    <!-- PASTOR -->
-    <section class="relative px-4 py-20 overflow-hidden">
-
-      <div class="relative z-10 max-w-4xl mx-auto">
-
-        <div class="scroll-reveal image-cinematic rounded-2xl overflow-hidden mb-10 shadow-2xl">
-          <img
-            src="images/pastor.jpg"
-            alt="Discernimento espiritual"
-            class="w-full h-auto object-cover"
-          >
-        </div>
-
-        <div class="space-y-6 text-center max-w-2xl mx-auto">
-          <p class="scroll-reveal font-cormorant text-3xl text-white italic">
-            “Existem batalhas que não são naturais.”
-          </p>
-
-          <p class="scroll-reveal font-cormorant text-xl text-gray-400 italic">
-            O mundo espiritual influencia pessoas, emoções e ambientes.
-          </p>
-
-          <p class="scroll-reveal text-gold/80 text-sm tracking-wide uppercase">
-            Aprenda discernimento espiritual segundo princípios bíblicos.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="section-divider mx-8"></div>
-
-    <!-- OLHO -->
-    <section class="relative px-4 py-20 overflow-hidden">
-
-      <div class="relative z-10 max-w-4xl mx-auto">
-
-        <div class="blur-reveal mb-10">
-          <img
-            src="images/olho.jpg"
-            alt="Visão espiritual"
-            class="w-full rounded-2xl shadow-2xl border border-gold/10"
-          >
-        </div>
-
-        <div class="space-y-6 text-center max-w-2xl mx-auto">
-          <p class="scroll-reveal font-cormorant text-3xl text-white italic">
-            “E se seus olhos espirituais fossem despertados?”
-          </p>
-
-          <p class="scroll-reveal font-cormorant text-xl text-gray-400 italic">
-            Nem tudo que existe pode ser visto naturalmente.
-          </p>
-
-          <p class="scroll-reveal text-gold/80 text-sm tracking-wide uppercase">
-            Aprenda a reconhecer sinais espirituais.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="section-divider mx-8"></div>
-
-    <!-- BENEFÍCIOS -->
-    <section class="px-4 py-20">
-      <div class="max-w-lg mx-auto">
-
-        <h2 class="scroll-reveal font-cinzel text-2xl md:text-3xl text-center text-white mb-12">
-          O Que Você Vai Desenvolver
-        </h2>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-          <div class="scroll-reveal card-premium rounded-xl p-5 text-center">
-            <i data-lucide="eye" class="w-6 h-6 text-gold mx-auto mb-3"></i>
-            <p class="text-sm text-gray-200">Discernimento espiritual</p>
-          </div>
-
-          <div class="scroll-reveal card-premium rounded-xl p-5 text-center">
-            <i data-lucide="heart" class="w-6 h-6 text-gold mx-auto mb-3"></i>
-            <p class="text-sm text-gray-200">Sensibilidade espiritual</p>
-          </div>
-
-          <div class="scroll-reveal card-premium rounded-xl p-5 text-center">
-            <i data-lucide="zap" class="w-6 h-6 text-gold mx-auto mb-3"></i>
-            <p class="text-sm text-gray-200">Entendimento de sinais</p>
-          </div>
-
-          <div class="scroll-reveal card-premium rounded-xl p-5 text-center">
-            <i data-lucide="shield" class="w-6 h-6 text-gold mx-auto mb-3"></i>
-            <p class="text-sm text-gray-200">Vida espiritual fortalecida</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider mx-8"></div>
-
-    <!-- CTA FINAL -->
-    <section class="relative px-4 py-24 overflow-hidden">
-
-      <div class="relative z-10 max-w-lg mx-auto text-center">
-
-        <div class="scroll-reveal book-3d mx-auto mb-8 w-52 animate-float">
-          <img
-            src="images/livro.png"
-            alt="Livro Vendo o Invisível"
-            class="book-3d-inner w-full object-contain"
-          >
-        </div>
-
-        <p class="scroll-reveal font-cormorant text-2xl md:text-3xl text-white italic mb-8">
-          Você está pronto para enxergar além do natural?
-        </p>
-
-        <div class="scroll-reveal mb-8">
-          <span class="text-gray-500 line-through text-sm">R$50,00</span>
-          <span class="text-gold font-bold text-4xl ml-3">R$19,90</span>
-        </div>
-
-        <a
-          href="https://pay.cakto.com.br/g278su7_799667"
-          target="_blank"
-          class="scroll-reveal cta-btn animate-glow inline-block px-8 py-5 rounded-full text-dark font-bold text-base md:text-lg tracking-wide"
-        >
-          QUERO DESPERTAR MINHA VISÃO ESPIRITUAL
-        </a>
-
-      </div>
-    </section>
-
-    <div class="section-divider mx-8"></div>
-
-    <!-- FOOTER -->
-    <footer class="px-4 py-10 text-center">
-      <p class="text-xs text-gray-600">
-        © 2024 Vendo o Invisível • Todos os direitos reservados
+      <p class="font-cormorant text-xl md:text-2xl text-gray-300 italic leading-relaxed mb-8">
+        O guia espiritual que vai abrir seus olhos para o mundo que a maioria não consegue enxergar.
       </p>
-    </footer>
 
-  </div>
+      <div class="mb-8">
+        <span class="text-gray-500 line-through text-sm">R$50,00</span>
+        <span class="text-gold font-bold text-4xl ml-3">R$19,90</span>
+        <span class="block text-xs text-gold/70 mt-2">PROMOÇÃO DE HOJE</span>
+      </div>
+
+      <a href="https://pay.cakto.com.br/g278su7_799667"
+        target="_blank"
+        class="cta-btn animate-glow inline-block px-10 py-5 rounded-full text-dark font-bold tracking-wide text-lg">
+        QUERO ENXERGAR ALÉM
+      </a>
+
+    </div>
+  </section>
+
+  <div class="section-divider mx-8"></div>
+
+  <!-- PASTOR -->
+  <section class="px-4 py-24 overflow-hidden">
+
+    <div class="max-w-5xl mx-auto">
+
+      <div class="scroll-reveal image-cinematic shadow-2xl mb-10">
+        <img src="images/pastor.jpg"
+          alt="Discernimento espiritual"
+          class="w-full h-auto object-cover">
+      </div>
+
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+
+        <p class="scroll-reveal font-cormorant text-3xl md:text-4xl text-white italic">
+          “Existem batalhas que não são naturais.”
+        </p>
+
+        <p class="scroll-reveal font-cormorant text-xl text-gray-400 italic">
+          O mundo espiritual influencia pessoas, emoções e ambientes.
+        </p>
+
+        <p class="scroll-reveal text-gold/80 uppercase tracking-wide text-sm">
+          Aprenda discernimento espiritual segundo princípios bíblicos.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-divider mx-8"></div>
+
+  <!-- OLHO -->
+  <section class="px-4 py-24 overflow-hidden">
+
+    <div class="max-w-5xl mx-auto">
+
+      <div class="scroll-reveal image-cinematic shadow-2xl mb-10">
+        <img src="images/eye.jpg"
+          alt="Visão espiritual"
+          class="w-full h-auto object-cover">
+      </div>
+
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+
+        <p class="scroll-reveal font-cormorant text-3xl md:text-4xl text-white italic">
+          “E se seus olhos espirituais fossem despertados?”
+        </p>
+
+        <p class="scroll-reveal font-cormorant text-xl text-gray-400 italic">
+          Nem tudo que existe pode ser visto naturalmente.
+        </p>
+
+        <p class="scroll-reveal text-gold/80 uppercase tracking-wide text-sm">
+          Aprenda a reconhecer sinais espirituais.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-divider mx-8"></div>
+
+  <!-- VERSÍCULOS -->
+  <section class="px-4 py-24">
+
+    <div class="max-w-3xl mx-auto text-center space-y-14">
+
+      <div class="scroll-reveal">
+        <i data-lucide="book-open" class="w-8 h-8 text-gold/50 mx-auto mb-6"></i>
+
+        <blockquote class="font-cormorant text-2xl md:text-3xl italic text-gray-200 leading-relaxed">
+          “Porque a nossa luta não é contra carne e sangue, mas contra os principados...”
+        </blockquote>
+
+        <cite class="block mt-4 text-gold/70 text-sm tracking-wide">
+          — Efésios 6:12
+        </cite>
+      </div>
+
+      <div class="scroll-reveal">
+
+        <blockquote class="font-cormorant text-2xl md:text-3xl italic text-gray-200 leading-relaxed">
+          “O homem natural não compreende as coisas do Espírito de Deus...”
+        </blockquote>
+
+        <cite class="block mt-4 text-gold/70 text-sm tracking-wide">
+          — 1 Coríntios 2:14
+        </cite>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-divider mx-8"></div>
+
+  <!-- BENEFÍCIOS -->
+  <section class="px-4 py-24">
+
+    <div class="max-w-4xl mx-auto">
+
+      <h2 class="scroll-reveal font-cinzel text-3xl text-center text-white mb-14">
+        O Que Você Vai Desenvolver
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <div class="scroll-reveal card-premium rounded-2xl p-6 text-center">
+          <i data-lucide="eye" class="w-7 h-7 text-gold mx-auto mb-4"></i>
+          <p>Discernimento espiritual</p>
+        </div>
+
+        <div class="scroll-reveal card-premium rounded-2xl p-6 text-center">
+          <i data-lucide="heart" class="w-7 h-7 text-gold mx-auto mb-4"></i>
+          <p>Sensibilidade espiritual</p>
+        </div>
+
+        <div class="scroll-reveal card-premium rounded-2xl p-6 text-center">
+          <i data-lucide="zap" class="w-7 h-7 text-gold mx-auto mb-4"></i>
+          <p>Entendimento de sinais</p>
+        </div>
+
+        <div class="scroll-reveal card-premium rounded-2xl p-6 text-center">
+          <i data-lucide="shield" class="w-7 h-7 text-gold mx-auto mb-4"></i>
+          <p>Vida espiritual fortalecida</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-divider mx-8"></div>
+
+  <!-- COMO RECEBE -->
+  <section class="px-4 py-24">
+
+    <div class="max-w-lg mx-auto">
+
+      <h2 class="scroll-reveal font-cinzel text-3xl text-center text-white mb-12">
+        Como Você Recebe
+      </h2>
+
+      <div class="scroll-reveal space-y-5 max-w-sm mx-auto">
+
+        <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
+          <span>Ebook digital completo</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
+          <span>Acesso imediato após compra</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
+          <span>Compatível com celular</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
+          <span>Conteúdo direto e organizado</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="section-divider mx-8"></div>
+
+  <!-- CTA FINAL -->
+  <section class="px-4 py-28 overflow-hidden">
+
+    <div class="max-w-xl mx-auto text-center">
+
+      <div class="scroll-reveal book-3d w-52 mx-auto mb-10 animate-float">
+        <img src="images/book.png"
+          alt="Livro Vendo o Invisível"
+          class="w-full object-contain">
+      </div>
+
+      <p class="scroll-reveal font-cormorant text-3xl md:text-4xl italic text-white mb-10">
+        Você está pronto para enxergar além do natural?
+      </p>
+
+      <div class="scroll-reveal mb-10">
+        <span class="text-gray-500 line-through text-sm">R$50,00</span>
+        <span class="text-gold font-bold text-5xl ml-3">R$19,90</span>
+      </div>
+
+      <a href="https://pay.cakto.com.br/g278su7_799667"
+        target="_blank"
+        class="scroll-reveal cta-btn animate-glow inline-block px-10 py-5 rounded-full text-dark font-bold tracking-wide text-lg">
+        QUERO DESPERTAR MINHA VISÃO ESPIRITUAL
+      </a>
+
+    </div>
+
+  </section>
+
+  <div class="section-divider mx-8"></div>
+
+  <!-- COMENTÁRIOS -->
+  <section class="px-4 py-24">
+
+    <div class="max-w-xl mx-auto">
+
+      <h2 class="scroll-reveal font-cinzel text-3xl text-center text-white mb-12">
+        Comentários
+      </h2>
+
+      <div class="space-y-5 mb-10">
+
+        <div class="scroll-reveal card-premium rounded-2xl p-5 flex gap-4">
+
+          <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
+            <span class="text-xs font-bold text-gold">M</span>
+          </div>
+
+          <div>
+            <p class="text-gray-200">
+              Glória a Deus! Esse conteúdo abriu meus olhos 🙏
+            </p>
+
+            <span class="text-xs text-gray-500">
+              Maria S.
+            </span>
+          </div>
+
+        </div>
+
+        <div class="scroll-reveal card-premium rounded-2xl p-5 flex gap-4">
+
+          <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
+            <span class="text-xs font-bold text-gold">P</span>
+          </div>
+
+          <div>
+            <p class="text-gray-200">
+              Muito forte espiritualmente 🔥
+            </p>
+
+            <span class="text-xs text-gray-500">
+              Paulo R.
+            </span>
+          </div>
+
+        </div>
+
+        <div class="scroll-reveal card-premium rounded-2xl p-5 flex gap-4">
+
+          <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
+            <span class="text-xs font-bold text-gold">A</span>
+          </div>
+
+          <div>
+            <p class="text-gray-200">
+              Valeu cada centavo. Recomendo demais! 📖
+            </p>
+
+            <span class="text-xs text-gray-500">
+              Ana L.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="scroll-reveal card-premium rounded-2xl p-5">
+
+        <div class="flex gap-3">
+
+          <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center flex-shrink-0">
+            <i data-lucide="user" class="w-4 h-4 text-gray-400"></i>
+          </div>
+
+          <div class="flex-1">
+
+            <input type="text"
+              placeholder="Deixe seu comentário..."
+              class="w-full bg-transparent border-b border-gray-700 focus:border-gold/50 outline-none text-sm text-gray-200 pb-2 placeholder-gray-600">
+
+            <button class="mt-3 text-xs text-gold/70 hover:text-gold transition-colors">
+              Enviar
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="px-4 py-10 text-center">
+    <p class="text-xs text-gray-600">
+      © 2024 Vendo o Invisível • Todos os direitos reservados
+    </p>
+  </footer>
 
   <script>
     lucide.createIcons();
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.15 });
+    }, {
+      threshold: 0.15
+    });
 
-    document.querySelectorAll('.scroll-reveal, .blur-reveal').forEach(el => {
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
       observer.observe(el);
     });
   </script>
 
 </body>
+
 </html>
