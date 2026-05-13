@@ -4,22 +4,25 @@
 <head>
 
   <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1621856058945981');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1621856058945981');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -50,6 +53,7 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
     body {
       height: 100%;
       margin: 0;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -91,6 +95,28 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
       }
     }
 
+    @keyframes slideInNotification {
+      0% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+
+      12% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      82% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+    }
+
     .animate-float {
       animation: float 4s ease-in-out infinite;
     }
@@ -123,6 +149,18 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
     .cta-btn:hover {
       transform: scale(1.03);
       box-shadow: 0 0 30px rgba(201, 168, 76, .4);
+    }
+
+    .cta-btn-dark {
+      background: linear-gradient(135deg, #1c1c25, #101016);
+      border: 1px solid rgba(201, 168, 76, .35);
+      transition: .3s ease;
+    }
+
+    .cta-btn-dark:hover {
+      transform: scale(1.02);
+      border-color: rgba(201, 168, 76, .7);
+      box-shadow: 0 0 25px rgba(201, 168, 76, .18);
     }
 
     .card-premium {
@@ -176,6 +214,70 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
       filter: blur(80px);
       z-index: 0;
     }
+
+    .offer-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top, rgba(201, 168, 76, .12), transparent 38%),
+        linear-gradient(145deg, rgba(18, 18, 26, .98), rgba(8, 8, 11, .98));
+      border: 1px solid rgba(201, 168, 76, .14);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, .35);
+    }
+
+    .offer-card.featured {
+      border: 1px solid rgba(201, 168, 76, .55);
+      box-shadow:
+        0 0 0 1px rgba(201, 168, 76, .08),
+        0 30px 80px rgba(0, 0, 0, .55),
+        0 0 60px rgba(201, 168, 76, .12);
+    }
+
+    .offer-card.featured::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, rgba(201, 168, 76, .22), transparent 35%, rgba(201, 168, 76, .14));
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    .product-stack img {
+      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, .55));
+    }
+
+    .bonus-book {
+      transform: rotate(-4deg);
+    }
+
+    .bonus-book:nth-child(2) {
+      transform: rotate(4deg);
+      margin-left: -22px;
+    }
+
+    .security-badge img {
+      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, .35));
+    }
+
+    .purchase-toast {
+      position: fixed;
+      left: 16px;
+      bottom: 18px;
+      z-index: 80;
+      display: none;
+      width: min(92vw, 340px);
+      border: 1px solid rgba(201, 168, 76, .22);
+      background: rgba(12, 12, 17, .92);
+      backdrop-filter: blur(14px);
+      border-radius: 18px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .45);
+      animation: slideInNotification 5.8s ease both;
+    }
+
+    .purchase-toast.show {
+      display: flex;
+    }
   </style>
 </head>
 
@@ -183,6 +285,17 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
 
   <div class="bg-light top-0 left-[-200px]"></div>
   <div class="bg-light bottom-0 right-[-200px]"></div>
+
+  <!-- NOTIFICAÇÃO DE COMPRA -->
+  <div id="purchaseToast" class="purchase-toast items-center gap-3 p-4">
+    <div class="w-11 h-11 rounded-full bg-gold/15 flex items-center justify-center flex-shrink-0">
+      <i data-lucide="shopping-bag" class="w-5 h-5 text-gold"></i>
+    </div>
+    <div class="min-w-0">
+      <p id="purchaseName" class="text-sm text-white font-semibold leading-tight">Luana acabou de comprar</p>
+      <p id="purchasePlan" class="text-xs text-gray-400 mt-1">Plano Completo • acesso liberado agora</p>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
@@ -207,9 +320,7 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
         <span class="block text-xs text-gold/70 mt-2">PROMOÇÃO DE HOJE</span>
       </div>
 
-      <a href="https://pay.cakto.com.br/g278su7_799667"
-        target="_blank"
-        class="cta-btn animate-glow inline-block px-10 py-5 rounded-full text-dark font-bold tracking-wide text-lg">
+      <a href="#oferta" class="cta-btn animate-glow inline-block px-10 py-5 rounded-full text-dark font-bold tracking-wide text-lg">
         QUERO ENXERGAR ALÉM
       </a>
 
@@ -224,9 +335,7 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
     <div class="max-w-5xl mx-auto">
 
       <div class="scroll-reveal image-cinematic shadow-2xl mb-10">
-        <img src="images/pastor.jpg"
-          alt="Discernimento espiritual"
-          class="w-full h-auto object-cover">
+        <img src="images/pastor.jpg" alt="Discernimento espiritual" class="w-full h-auto object-cover">
       </div>
 
       <div class="text-center max-w-3xl mx-auto space-y-6">
@@ -257,9 +366,7 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
     <div class="max-w-5xl mx-auto">
 
       <div class="scroll-reveal image-cinematic shadow-2xl mb-10">
-        <img src="images/eye.jpg"
-          alt="Visão espiritual"
-          class="w-full h-auto object-cover">
+        <img src="images/eye.jpg" alt="Visão espiritual" class="w-full h-auto object-cover">
       </div>
 
       <div class="text-center max-w-3xl mx-auto space-y-6">
@@ -397,31 +504,200 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
 
   <div class="section-divider mx-8"></div>
 
-  <!-- CTA FINAL -->
-  <section class="px-4 py-28 overflow-hidden">
+  <!-- OFERTA COM PLANOS -->
+  <section id="oferta" class="px-4 py-28 overflow-hidden scroll-mt-8">
 
-    <div class="max-w-xl mx-auto text-center">
+    <div class="max-w-6xl mx-auto">
 
-      <div class="scroll-reveal book-3d w-52 mx-auto mb-10 animate-float">
-        <img src="images/book.png"
-          alt="Livro Vendo o Invisível"
-          class="w-full object-contain">
+      <div class="scroll-reveal text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-block px-4 py-2 rounded-full border border-gold/20 bg-gold/5 text-gold/80 text-xs tracking-[0.25em] uppercase mb-5">
+          Escolha sua oferta
+        </span>
+
+        <h2 class="font-cinzel text-3xl md:text-5xl text-white font-black mb-5">
+          Comece Hoje Sua Jornada Espiritual
+        </h2>
+
+        <p class="font-cormorant text-xl md:text-2xl text-gray-400 italic leading-relaxed">
+          Receba seu acesso digital imediatamente após a compra e estude no celular, tablet ou computador.
+        </p>
       </div>
 
-      <p class="scroll-reveal font-cormorant text-3xl md:text-4xl italic text-white mb-10">
-        Você está pronto para enxergar além do natural?
-      </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-7 items-stretch">
 
-      <div class="scroll-reveal mb-10">
-        <span class="text-gray-500 line-through text-sm">R$50,00</span>
-        <span class="text-gold font-bold text-5xl ml-3">R$19,90</span>
+        <!-- PLANO BÁSICO -->
+        <div class="scroll-reveal offer-card p-6 md:p-8">
+
+          <div class="relative z-10 h-full flex flex-col">
+
+            <div class="mb-7">
+              <p class="text-gold/70 uppercase tracking-[0.22em] text-xs mb-3">Plano Básico</p>
+              <h3 class="font-cinzel text-2xl md:text-3xl text-white font-bold mb-4">
+                Vendo o Invisível
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Ideal para quem deseja começar com o guia principal e desenvolver visão espiritual segundo princípios bíblicos.
+              </p>
+            </div>
+
+            <div class="book-3d w-48 mx-auto mb-8 animate-float">
+              <img src="images/book.png" alt="Livro Vendo o Invisível" class="w-full object-contain">
+            </div>
+
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-200 text-sm">Livro digital <strong>Vendo o Invisível</strong></span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-200 text-sm">Acesso imediato após a compra</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-200 text-sm">Material digital para ler no celular</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-200 text-sm">Garantia de 7 dias</span>
+              </div>
+            </div>
+
+            <div class="mt-auto">
+              <div class="mb-6">
+                <span class="text-gray-500 line-through text-sm">R$50,00</span>
+                <span class="text-gold font-bold text-4xl ml-3">R$19,90</span>
+              </div>
+
+              <a href="https://pay.cakto.com.br/wawdknu" target="_blank"
+                class="cta-btn-dark block w-full text-center px-8 py-4 rounded-full text-gold font-bold tracking-wide">
+                ESCOLHER PLANO BÁSICO
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- PLANO COMPLETO -->
+        <div class="scroll-reveal offer-card featured p-6 md:p-8">
+
+          <div class="relative z-10 h-full flex flex-col">
+
+            <div class="absolute top-5 right-5 hidden sm:block">
+              <span class="bg-gold text-dark text-[10px] font-black tracking-[0.18em] uppercase px-4 py-2 rounded-full shadow-lg">
+                Mais completo
+              </span>
+            </div>
+
+            <div class="mb-7 pr-0 sm:pr-36">
+              <p class="text-gold uppercase tracking-[0.22em] text-xs mb-3">Plano Completo</p>
+              <h3 class="font-cinzel text-2xl md:text-4xl text-white font-black mb-4">
+                Kit Mundo Espiritual
+              </h3>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                O pacote mais robusto para quem quer aprofundar a visão espiritual, fé e entendimento bíblico com bônus exclusivos.
+              </p>
+            </div>
+
+            <div class="product-stack flex items-end justify-center mb-8 min-h-[230px]">
+              <img src="images/livro-fe.png" alt="Bônus livro Fé" class="bonus-book w-28 sm:w-32 md:w-36 object-contain">
+              <img src="images/book.png" alt="Livro Vendo o Invisível" class="w-40 sm:w-48 md:w-56 object-contain relative z-10">
+              <img src="images/relogio-divino.png" alt="Bônus O Relógio Divino" class="bonus-book w-28 sm:w-32 md:w-36 object-contain">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              <div class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-100 text-sm">Livro principal <strong>Vendo o Invisível</strong></span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="gift" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-100 text-sm">Bônus: <strong>O Relógio Divino</strong></span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="gift" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-100 text-sm">Bônus: <strong>Fé, Código de Acesso</strong></span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="zap" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-100 text-sm">Acesso imediato após a compra</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="shield-check" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-100 text-sm">Garantia incondicional de 7 dias</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="message-circle" class="w-5 h-5 text-gold mt-0.5 flex-shrink-0"></i>
+                <span class="text-gray-100 text-sm">Suporte para acesso ao material</span>
+              </div>
+            </div>
+
+            <div class="mt-auto">
+              <div class="rounded-2xl border border-gold/20 bg-gold/5 p-4 mb-6">
+                <p class="text-xs text-gold/80 uppercase tracking-wide mb-2">Oferta recomendada</p>
+                <div class="flex flex-wrap items-end gap-3">
+                  <span class="text-gray-500 line-through text-sm">R$97,00</span>
+                  <span class="text-gold font-black text-5xl">R$29,90</span>
+                  <span class="text-gray-400 text-sm pb-2">pagamento único</span>
+                </div>
+              </div>
+
+              <a href="https://pay.cakto.com.br/b7fq2ji" target="_blank"
+                class="cta-btn animate-glow block w-full text-center px-8 py-5 rounded-full text-dark font-black tracking-wide text-lg">
+                QUERO O PLANO COMPLETO
+              </a>
+
+              <p class="text-center text-xs text-gray-500 mt-4">
+                Compra 100% segura • Material digital • Acesso liberado imediatamente
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <a href="https://pay.cakto.com.br/g278su7_799667"
-        target="_blank"
-        class="scroll-reveal cta-btn animate-glow inline-block px-10 py-5 rounded-full text-dark font-bold tracking-wide text-lg">
-        QUERO DESPERTAR MINHA VISÃO ESPIRITUAL
-      </a>
+    </div>
+
+  </section>
+
+  <div class="section-divider mx-8"></div>
+
+  <!-- SELOS DE SEGURANÇA -->
+  <section class="px-4 py-24 overflow-hidden">
+
+    <div class="max-w-5xl mx-auto text-center">
+
+      <div class="scroll-reveal max-w-2xl mx-auto mb-12">
+        <h2 class="font-cinzel text-3xl md:text-4xl text-white font-bold mb-5">
+          Sua Compra Está Protegida
+        </h2>
+        <p class="font-cormorant text-xl text-gray-400 italic">
+          Você recebe o acesso digital com segurança e ainda conta com 7 dias de garantia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center max-w-3xl mx-auto">
+
+        <div class="scroll-reveal security-badge card-premium rounded-3xl p-6">
+          <img src="images/selo-garantia.png" alt="Selo 7 dias de garantia" class="w-56 mx-auto object-contain mb-5">
+          <h3 class="font-cinzel text-xl text-white mb-2">7 Dias de Garantia</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Você pode conhecer o material com tranquilidade e segurança.
+          </p>
+        </div>
+
+        <div class="scroll-reveal security-badge card-premium rounded-3xl p-6">
+          <img src="images/compra-segura.png" alt="Selo compra segura" class="w-56 mx-auto object-contain mb-5">
+          <h3 class="font-cinzel text-xl text-white mb-2">Compra Segura</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Pagamento protegido e acesso digital liberado após a confirmação.
+          </p>
+        </div>
+
+      </div>
 
     </div>
 
@@ -506,8 +782,7 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
 
           <div class="flex-1">
 
-            <input type="text"
-              placeholder="Deixe seu comentário..."
+            <input type="text" placeholder="Deixe seu comentário..."
               class="w-full bg-transparent border-b border-gray-700 focus:border-gold/50 outline-none text-sm text-gray-200 pb-2 placeholder-gray-600">
 
             <button class="mt-3 text-xs text-gold/70 hover:text-gold transition-colors">
@@ -547,8 +822,53 @@ src="https://www.facebook.com/tr?id=1621856058945981&ev=PageView&noscript=1"
     document.querySelectorAll('.scroll-reveal').forEach(el => {
       observer.observe(el);
     });
+
+    const purchaseNames = [
+      'Luana acabou de comprar',
+      'Marcos acabou de comprar',
+      'Ana Paula acabou de comprar',
+      'Rafael acabou de comprar',
+      'Juliana acabou de comprar',
+      'Carlos acabou de comprar',
+      'Fernanda acabou de comprar',
+      'Patrícia acabou de comprar',
+      'Renato acabou de comprar',
+      'Camila acabou de comprar'
+    ];
+
+    const purchasePlans = [
+      'Plano Completo • acesso liberado agora',
+      'Vendo o Invisível • material digital enviado',
+      'Kit Mundo Espiritual • compra aprovada',
+      'Plano Completo • bônus liberados'
+    ];
+
+    const toast = document.getElementById('purchaseToast');
+    const purchaseName = document.getElementById('purchaseName');
+    const purchasePlan = document.getElementById('purchasePlan');
+
+    let purchaseIndex = 0;
+
+    function showPurchaseToast() {
+      if (!toast || !purchaseName || !purchasePlan) return;
+
+      purchaseName.textContent = purchaseNames[purchaseIndex % purchaseNames.length];
+      purchasePlan.textContent = purchasePlans[purchaseIndex % purchasePlans.length];
+      purchaseIndex++;
+
+      toast.classList.remove('show');
+      void toast.offsetWidth;
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 5800);
+    }
+
+    setTimeout(showPurchaseToast, 4500);
+    setInterval(showPurchaseToast, 18000);
   </script>
 
 </body>
 
-</html>
+                                                                                      </html>
